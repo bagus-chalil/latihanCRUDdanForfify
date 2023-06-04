@@ -6,24 +6,20 @@
         <img src="{{asset('assets/images/logos/dark-logo.svg')}}" width="180" alt="">
       </a>
       <p class="text-center">Your Social Campaigns</p>
-      <form>
+      @if ($errors->has('email'))
+          <div class="alert alert-danger">
+              {{ $errors->first('email') }}
+          </div>
+      @endif
+      <form action="{{ route('login') }}" method="POST">
+      @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email Address</label>
-            <input type="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email">
-            @error('email')
-                <div class="alert alert-danger mt-2">
-                    {{ $message }}
-                </div>    
-            @enderror
+            <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Masukkan Alamat Email">
         </div>
         <div class="mb-4">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password">
-            @error('password')
-                <div class="alert alert-danger mt-2">
-                    {{ $message }}
-                </div>    
-            @enderror
+            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
         </div>
         <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Login</button>
         <div class="d-flex align-items-center justify-content-center">

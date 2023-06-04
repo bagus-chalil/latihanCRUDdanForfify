@@ -6,7 +6,8 @@
         <img src="{{asset('assets/images/logos/dark-logo.svg')}}" width="180" alt="">
       </a>
       <p class="text-center">Your Social Campaigns</p>
-      <form>
+      <form action="{{ route('register') }}" method="POST">
+        @csrf
         <div class="mb-3">
             <label for="exampleInputtext1" class="form-label">Name</label>
             <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Lengkap">
